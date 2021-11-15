@@ -2,9 +2,10 @@ const Form = ({ submit, change, newOrder }) => {
   return (
     <form onSubmit={submit}>
 
-      <select value={newOrder.status} onChange={e => change(e)}>
+      {console.log(newOrder.status)}
+      <select name='status' onChange={e => change(e)}>
         {
-          newOrder.status.map((order) => <option value={order}>{order}</option>)
+          newOrder.status.map((order) => <option key={order} value={order}>{order}</option>)
         })
       </select>
 
