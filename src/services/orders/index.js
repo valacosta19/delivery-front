@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export async function getAllOrders() {
-  const { data } = await axios.get('https://kiwibot-challenge-25486.firebaseapp.com/')
+  const { data } = await axios.get('https://kiwibot-challenge-25486.firebaseapp.com/api/delivery_orders')
   return data
 }
 
