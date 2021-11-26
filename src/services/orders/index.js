@@ -1,13 +1,11 @@
 import axios from 'axios'
 
 export async function getAllOrders() {
-  const { data } = await axios.get('https://kiwibot-challenge-25486.firebaseapp.com/api/delivery_orders')
-  return data
+  const { data } = await axios.get('https://kiwibot-challenge-25486-default-rtdb.firebaseio.com/api/delivery_orders.json')
+  return Object.values(data)
 }
 
-export async function createOrders({ id, creationDate, status, pickup, dropoff, zoneId }) {
-  let { pickupLat, pickupLon } = pickup
-  let { dropoffLat, dropoffLon } = dropoff
-  const { data } = await axios.post('https://kiwibot-challenge-25486.firebaseapp.com/api/delivery_orders', { id, creationDate, status, pickupLat, pickupLon, dropoffLat, dropoffLon, zoneId })
-  return data
+export async function createOrders(orderToAddToState) {
+  await axios.post('https://kiwibot-challenge-25486-default-rtdb.firebaseio.com/api/delivery_orders.json', orderToAddToState)
+  return orderToAddToState
 }

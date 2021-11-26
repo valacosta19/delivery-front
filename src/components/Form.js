@@ -1,11 +1,13 @@
 const Form = ({ submit, change, newOrder }) => {
+
+  let status = ['Pendiente', 'Asignado', 'En tránsito', 'Entregado']
+
   return (
     <form onSubmit={submit}>
 
-      {console.log(newOrder.status)}
-      <select name='status' onChange={e => change(e)}>
+      <select name='status' onChange={change}>
         {
-          newOrder.status.map((order) => <option key={order} value={order}>{order}</option>)
+          status.map((order) => <option key={order} value={order}>{order}</option>)
         })
       </select>
 

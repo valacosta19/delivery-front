@@ -9,7 +9,7 @@ const App = () => {
 
   const [orders, setOrders] = useState([])
   const [newOrder, setNewOrder] = useState({
-    status: ['Pendiente', 'Asignado', 'En tránsito', 'Entregado'],
+    status: 'Pendiente',
     pickupLat: 0,
     pickupLon: 0,
     dropoffLat: 0,
@@ -30,10 +30,10 @@ const App = () => {
     const value = e.target.value
     setNewOrder(prevNewOrder => ({...prevNewOrder, [e.target.name]: value}))
   }
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
     setLoading(true)
     
     const orderToAddToState = {
@@ -54,7 +54,7 @@ const App = () => {
     setErrorOrder('');
 
     createOrders(orderToAddToState).then(newOrder => {
-      setOrders((prevOrders) => [...prevOrders, newOrder])
+      setOrders((prevOrders) => [...prevOrders, {...newOrder}])
       setLoading(false);
     }).catch((error) => {
       setLoading(false);
@@ -66,10 +66,10 @@ const App = () => {
   }
   
   if (errorOrder) return <span>Error</span>
+
   return (
     <>
       <h1>Ordenes</h1>
-      {console.log(...orders)}
       <ol>
         {orders.map((order) => <Order key={order.id} {...order} /> )}
       </ol>
