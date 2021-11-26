@@ -3,6 +3,17 @@ import Order from './components/Order'
 import { getAllOrders, createOrders } from './services/orders/index'
 import Form from './components/Form';
 import { v4 as uuidv4 } from 'uuid';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import { Typography } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 
 const App = () => {
@@ -69,10 +80,27 @@ const App = () => {
 
   return (
     <>
-      <h1>Ordenes</h1>
-      <ol>
-        {orders.map((order) => <Order key={order.id} {...order} /> )}
-      </ol>
+      <Typography variant="h1">Ordenes</Typography>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell>Fecha de creación</TableCell>
+              <TableCell>Estado</TableCell>
+              <TableCell>Latitud de retiro</TableCell>
+              <TableCell>Longitud de retiro</TableCell>
+              <TableCell>Latitud de entrega</TableCell>
+              <TableCell>Longitud de entrega</TableCell>
+              <TableCell>Código postal</TableCell>
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {orders.map((order) => <Order key={order.id} {...order} /> )}
+          </TableBody>
+        </Table>
+      </TableContainer>
 
       { loadingOrder && "Cargando..." }
       <Form submit={handleSubmit} change={handleChange} newOrder={newOrder} />
