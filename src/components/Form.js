@@ -18,6 +18,7 @@ const Form = ({ submit, change, newOrder }) => {
               name='status'
               size="small"
               margin='normal'
+              placeholder='Estado'
               fullWidth
             >
               {status.map((order) => (
